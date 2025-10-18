@@ -1,0 +1,26 @@
+<dx-popup
+  [(visible)]="visible"
+  [showTitle]="false"
+  [showCloseButton]="false"
+  [width]="350"
+  [height]="300"
+  [dragEnabled]="false"
+  [resizeEnabled]="false"
+  [shading]="true"
+  [shadingColor]="'rgba(0,0,0,0.4)'"
+  contentTemplate="confirmContent">
+
+  <div *dxTemplate="let data of 'confirmContent'" class="confirm-modal-content">
+    <div class="confirm-icon-container">
+      <div class="confirm-icon">
+        <i class="fas fa-question"></i>
+      </div>
+    </div>
+    <h3 class="confirm-title">{{ title }}</h3>
+    <p class="confirm-message" [innerHTML]="message"></p>
+    <div class="confirm-buttons">
+      <button class="confirm-button" (click)="onConfirm()">{{ confirmButtonText }}</button>
+      <button class="cancel-button" (click)="onCancel()">{{ cancelButtonText }}</button>
+    </div>
+  </div>
+</dx-popup>

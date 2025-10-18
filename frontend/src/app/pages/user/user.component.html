@@ -1,0 +1,77 @@
+<h2>Usuarios </h2>
+<dx-data-grid
+  [dataSource]="users"
+  class=" content-block"
+  [showBorders]="false"
+  [focusedRowEnabled]="true"
+  [focusedRowIndex]="0"
+  [columnAutoWidth]="true"
+  [columnHidingEnabled]="true"
+  [keyExpr]="'id'">
+
+    <dxo-toolbar>
+      <dxi-item location="before">
+        <dx-button
+  *ngIf="allowedRoles.length"
+  text="Nuevo Usuario"
+  icon="fa fa-plus custom-icon"
+  (onClick)="btnCrearUser()"
+  class="btn">
+</dx-button>
+      </dxi-item>
+    </dxo-toolbar>
+
+  <dxo-data-grid-paging [pageSize]="5"></dxo-data-grid-paging>
+  <dxo-data-grid-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-data-grid-pager>
+  <dxo-data-grid-filter-row [visible]="true"></dxo-data-grid-filter-row>
+
+    <dxi-column dataField="name" caption="Nombre"></dxi-column>
+    <dxi-column dataField="email" caption="Correo"></dxi-column>
+    <dxi-column dataField="role" caption="Rol"></dxi-column>
+
+    <dxi-column caption="Acciones" cellTemplate="actionTemplate" alignment="center" [width]="150">
+        <div *dxTemplate="let data of 'actionTemplate'" class="table-content-icons">
+          <dx-button icon="eyeopen" class="view-button" type="success" stylingMode="outlined" (onClick)="actionUser(data.data, 'VIEW')" hint="Visualizar"></dx-button>
+          <dx-button icon="clear" class="delete-button" hint="Eliminar" type="danger" stylingMode="outlined" (onClick)="deleteUser(data.data)"></dx-button>
+        </div>
+        </dxi-column>
+  </dx-data-grid>
+
+  <dx-popup
+     [width]="'600'"
+     [height]="'70%'"
+     [showTitle]="true"
+     [title]="titulo"
+     [dragEnabled]="true"
+     [hideOnOutsideClick]="true"
+     [showCloseButton]="true"
+     [(visible)]="popupVisible">
+     <dx-scroll-view width="100%" height="100%">
+       <app-form-user [crud]="crud" (crudEvent)="crudUser($event)" [allowedRoles]="allowedRoles"></app-form-user>
+     </dx-scroll-view>
+  </dx-popup>
+
+  <app-error-popup
+    [visible]="errorPopupVisible"
+    [title]="errorTitle"
+    [message]="errorMessage"
+    (close)="errorPopupVisible = false">
+  </app-error-popup>
+
+  <app-success-popup
+    [visible]="successPopupVisible"
+    [title]="successTitle"
+    [message]="successMessage"
+    (close)="successPopupVisible = false">
+  </app-success-popup>
+
+  <app-confirm-popup
+    [visible]="confirmPopupVisible"
+    [title]="confirmTitle"
+    [message]="confirmMessage"
+    [confirmButtonText]="confirmButtonText"
+    [cancelButtonText]="cancelButtonText"
+    (confirm)="onConfirmDelete()"
+    (cancel)="confirmPopupVisible = false">
+  </app-confirm-popup>
+

@@ -1,0 +1,37 @@
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="col-lg-3 mb-3">
+          <dx-button type="success" text="Crear Formulario" icon="fa fa-plus" (onClick)="btnCrearForm()"></dx-button>
+        </div>
+        <div class="card">
+          <div id="data-grid-form">
+            <dx-data-grid [dataSource]="entities" [showBorders]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [showColumnLines]="true" [showRowLines]="true">
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+              <dxi-column dataField="formType" caption="Tipo"></dxi-column>
+              <dxi-column dataField="name" caption="Nombre"></dxi-column>
+              <dxi-column dataField="contactEmail" caption="Email"></dxi-column>
+              <dxi-column dataField="contactPhone" caption="Teléfono"></dxi-column>
+              <dxi-column dataField="address" caption="Dirección"></dxi-column>
+              <dxi-column caption="Acciones" cellTemplate="fichaCellTemplate" alignment="center" [width]="150">
+                <div *dxTemplate="let data of 'fichaCellTemplate'" class="table-content-icons">
+                  <dx-button icon="fas fa-eye" class="mr-1" stylingMode="outlined" (onClick)="actionForm(data.data, 'VIEW')" hint="Visualizar"></dx-button>
+                  <dx-button icon="fas fa-edit" stylingMode="outlined" type="success" (onClick)="actionForm(data.data, 'EDIT')" hint="Editar"></dx-button>
+                  <dx-button icon="fas fa-window-close" class="positionButon ml-1" hint="Eliminar" type="danger" (onClick)="deleteForm(data.data)"></dx-button>
+                </div>
+              </dxi-column>
+            </dx-data-grid>
+          </div>
+          <dx-popup [width]="'600'" [height]="'70%'" [showTitle]="true" [title]="titulo" [dragEnabled]="true" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
+            <dx-scroll-view width="100%" height="100%">
+              <app-form-form (crudEvent)="crudForm($event)" [crud]="crud" [formTypes]="formTypes"></app-form-form>
+            </dx-scroll-view>
+          </dx-popup>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

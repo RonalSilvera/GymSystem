@@ -1,0 +1,65 @@
+:host {
+  display: block;
+  padding: 20px;
+}
+
+
+.stats {
+  display: flex;
+  gap: 15px;
+}
+
+.stat-item {
+  text-align: center;
+  background-color: #ffffff;
+  color: #1f2937;
+  padding: 15px 25px;
+  border-radius: 8px;
+  min-width: 110px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.view-button,
+.delete-button,
+.edit-button {
+  margin: 0 3px;
+}
+
+.btn {
+  background-color: #2f3959;
+  color: white;
+  height: 36px;
+}
+
+.custom-icon {
+  color: #007bff !important;
+}
+
+.table-content-icons {
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  padding: 3px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.status-filter {
+  width: 200px;
+  margin-left: 10px;
+  height: 36px;
+}
+

@@ -1,0 +1,81 @@
+<div class="profile-container">
+  <div class="profile-card">
+    <!-- Header con avatar -->
+    <div class="profile-header">
+      <div class="avatar-container">
+        <div class="avatar-wrapper">
+          <img [src]="pendingBase64 || getImageUrl(user.profileImageUrl) || defaultImage" class="avatar-image" alt="Profile" />
+          <div class="avatar-overlay">
+            <dx-file-uploader
+              accept="image/*"
+              [showFileList]="false"
+              uploadMode="useForm"
+              selectButtonText="Cambiar foto"
+              class="avatar-uploader"
+              (onValueChanged)="onFileChanged($event)">
+            </dx-file-uploader>
+          </div>
+        </div>
+      </div>
+      <h2 class="profile-title">Mi Perfil</h2>
+    </div>
+
+    <div class="profile-content">
+      <form (ngSubmit)="save()" class="profile-form">
+        <!-- Alert informativo -->
+        <!-- <div class="alert-info">
+          <i class="fas fa-info-circle"></i>
+          <span>Los campos están en modo de solo lectura. Contacta al administrador para realizar cambios.</span>
+        </div> -->
+        <!-- Sección de información personal -->
+        <div class="form-section">
+          <h3 class="section-title">
+            <i class="fas fa-user"></i>
+            Información Personal
+          </h3>
+          
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="field-label">
+                <i class="fas fa-user"></i>
+                Nombre completo
+              </label>
+              <input type="text" class="field-input" [value]="user.name" readonly />
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                <i class="fas fa-envelope"></i>
+                Correo electrónico
+              </label>
+              <input type="email" class="field-input" [value]="user.email" readonly />
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                <i class="fas fa-lock"></i>
+                Contraseña
+              </label>
+              <input type="password" class="field-input" [value]="user.password" readonly />
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                <i class="fas fa-shield-alt"></i>
+                Rol del sistema
+              </label>
+              <input type="text" class="field-input" [value]="user.role" readonly />
+            </div>
+          </div>
+        </div>
+        <!-- Botones de acción -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i>
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,502 @@
+.login-page {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-main-container {
+            display: flex;
+            height: 60vh;
+            width: 80vw;
+            max-width: 1000px;
+            min-height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .left-panel {
+            flex: 1;
+            background-color: #2F3959;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            position: relative;
+        }
+
+        .logo-container {
+            margin-bottom: 2rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: #00bcd4;
+            border-radius: 50%;
+        }
+
+        .login-logo {
+            display: block;
+            margin: 0 auto 1rem auto;
+            max-width: 150px;
+            height: auto;
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin: 0 0 6rem 0;
+        }
+
+        .welcome-subtitle {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0.9;
+            font-weight: 400;
+            position: relative;
+            top: -80px;
+        }
+
+        .gym-icon {
+            font-size: 5rem;
+            color: white;
+            display: block;
+            text-align: center;
+            margin-top: -50px;
+        }
+
+        .right-panel {
+            flex: 1;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 350px;
+            padding: 1rem;
+        }
+
+        .login-form {
+            width: 100%;
+        }
+
+        .form-field {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            border-radius: 0;
+            padding: 12px 0;
+            background: transparent;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-bottom-color: #00bcd4;
+        }
+
+        .login-btn {
+            width: 100%;
+            height: 45px;
+            background: #2F3959;
+            border: none;
+            border-radius: 4px;
+            margin: 1rem 0;
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: #252a4a;
+        }
+
+        .separator {
+            text-align: center;
+            margin: 1.5rem 0 1rem 0;
+            position: relative;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .separator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #eee;
+        }
+
+        .separator span {
+            background: white;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-btn.instagram:hover {
+            background: #e4405f;
+            color: white;
+            border-color: #e4405f;
+        }
+
+        .social-btn.facebook:hover {
+            background: #1877f2;
+            color: white;
+            border-color: #1877f2;
+        }
+
+        .social-btn.twitter:hover {
+            background: #000000;
+            color: white;
+            border-color: #000000;
+        }
+
+        .device-selector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .device-btn {
+            background: #1B1F3B;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .device-btn.active {
+            background: #00bcd4;
+        }
+
+        /* === RESPONSIVE STYLES === */
+
+        /* Tablet Styles (768px - 1023px) */
+        @media (max-width: 1023px) and (min-width: 768px) {
+            .login-main-container {
+                flex-direction: column;
+                width: 90vw;
+                max-width: 600px;
+                height: auto;
+                min-height: auto;
+            }
+
+            .left-panel {
+                min-height: 250px;
+                padding: 2rem;
+            }
+
+            .welcome-title {
+                font-size: 2rem;
+                margin: 0 0 3rem 0;
+            }
+
+            .welcome-subtitle {
+                font-size: 0.85rem;
+                top: -40px;
+            }
+
+            .gym-icon {
+                font-size: 3.5rem;
+                margin-top: -20px;
+            }
+
+            .right-panel {
+                padding: 2rem;
+            }
+
+            .login-title {
+                font-size: 1.6rem;
+                margin-bottom: 1.2rem;
+            }
+        }
+
+        /* Mobile Styles (max-width: 767px) */
+        @media (max-width: 767px) {
+            .login-page {
+                padding: 1rem;
+            }
+
+            .login-main-container {
+                flex-direction: column;
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+                min-height: auto;
+                border-radius: 12px;
+            }
+
+            .left-panel {
+                min-height: 200px;
+                padding: 1.5rem 1rem;
+            }
+
+            .login-logo {
+                max-width: 120px;
+                margin-bottom: 0.5rem;
+            }
+
+            .welcome-title {
+                font-size: 1.5rem;
+                margin: 0 0 2rem 0;
+                line-height: 1.2;
+            }
+
+            .welcome-subtitle {
+                font-size: 0.8rem;
+                top: -20px;
+                line-height: 1.4;
+            }
+
+            .gym-icon {
+                font-size: 2.5rem;
+                margin-top: -10px;
+            }
+
+            .right-panel {
+                padding: 1.5rem 1rem;
+            }
+
+            .login-container {
+                max-width: 100%;
+                padding: 0.5rem;
+            }
+
+            .login-title {
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+
+            .form-field {
+                margin-bottom: 1.2rem;
+            }
+
+            .form-input {
+                padding: 10px 0;
+                font-size: 16px; /* Evita zoom en iOS */
+            }
+
+            .login-btn {
+                height: 40px;
+                font-size: 0.9rem;
+                margin: 0.8rem 0;
+            }
+
+            .separator {
+                margin: 1rem 0 0.8rem 0;
+                font-size: 0.85rem;
+            }
+
+            .social-buttons {
+                gap: 0.8rem;
+            }
+
+            .social-btn {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        /* Extra Small Mobile (max-width: 360px) */
+        @media (max-width: 360px) {
+            .login-main-container {
+                max-width: 320px;
+            }
+
+            .left-panel {
+                padding: 1rem;
+                min-height: 180px;
+            }
+
+            .welcome-title {
+                font-size: 1.3rem;
+            }
+
+            .right-panel {
+                padding: 1rem;
+            }
+
+            .login-title {
+                font-size: 1.2rem;
+            }
+
+            .form-input {
+                font-size: 16px;
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-height: 500px) and (orientation: landscape) and (max-width: 896px) {
+            .login-main-container {
+                flex-direction: row;
+                width: 95vw;
+                max-width: 800px;
+                height: 90vh;
+                min-height: 400px;
+            }
+
+            .left-panel {
+                padding: 1rem;
+                min-height: auto;
+            }
+
+            .welcome-title {
+                font-size: 1.3rem;
+                margin: 0 0 1rem 0;
+            }
+
+            .welcome-subtitle {
+                font-size: 0.75rem;
+                top: -10px;
+            }
+
+            .gym-icon {
+                font-size: 2rem;
+                margin-top: 0;
+            }
+
+            .right-panel {
+                padding: 1rem;
+            }
+
+            .login-title {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .form-field {
+                margin-bottom: 0.8rem;
+            }
+
+            .login-btn {
+                height: 35px;
+                margin: 0.5rem 0;
+            }
+
+            .separator {
+                margin: 0.8rem 0 0.5rem 0;
+            }
+        }
+
+        /* Very Small Heights */
+        @media (max-height: 400px) {
+            .login-main-container {
+                height: 95vh;
+            }
+
+            .left-panel {
+                padding: 0.5rem;
+            }
+
+            .right-panel {
+                padding: 0.5rem;
+            }
+
+            .welcome-title {
+                font-size: 1rem;
+                margin: 0 0 0.5rem 0;
+            }
+
+            .gym-icon {
+                font-size: 1.5rem;
+            }
+
+            .login-title {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+
+.dx-button.dx-button-default{
+  background-color: #2F3959;
+}
+.dx-button.dx-button-default:hover {
+  background-color: #41578D;
+}

@@ -1,0 +1,9 @@
+<form (submit)="submit($event)">
+  <dx-form [(formData)]="crud.form" labelLocation="top" [readOnly]="modoView">
+    <dxi-item dataField="name" [label]="{text:'Nombre'}">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-item>
+    <dxi-item dataField="description" [label]="{text:'Descripción'}"></dxi-item>
+    <dxi-item itemType="button" *ngIf="!modoView" [buttonOptions]="buttonOptionsSave"></dxi-item>
+  </dx-form>
+</form>

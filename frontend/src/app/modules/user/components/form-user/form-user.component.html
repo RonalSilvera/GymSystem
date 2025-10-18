@@ -1,0 +1,15 @@
+<form (submit)="submit($event)">
+  <dx-form [colCount]="4" [(formData)]="crud.form" labelLocation="top" [readOnly]="modoView">
+    <dxi-item dataField="name" [colSpan]="4" [label]="{text:'Nombre'}">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-item>
+    <dxi-item dataField="email" [colSpan]="4" [label]="{text:'Correo'}">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-item>
+    <dxi-item dataField="password" editorType="dxTextBox" [editorOptions]="{ mode: 'password' }" [colSpan]="4" [label]="{text:'Contraseña'}">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-item>
+    <dxi-item dataField="role" editorType="dxSelectBox" [editorOptions]="{ items: roles, displayExpr: 'text', valueExpr: 'value' }" [colSpan]="4" [label]="{text:'Rol'}"></dxi-item>
+    <dxi-item itemType="button" *ngIf="!modoView" [buttonOptions]="buttonOptionsSave"></dxi-item>
+  </dx-form>
+</form>

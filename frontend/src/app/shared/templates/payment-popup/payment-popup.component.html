@@ -1,0 +1,87 @@
+<dx-popup
+  [visible]="visible"
+  [showTitle]="true"
+  title="Registrar Pago de Membresía"
+  [dragEnabled]="false"
+  [width]="420"
+  [height]="'auto'"
+  [showCloseButton]="true"
+  [hideOnOutsideClick]="false"
+  [wrapperAttr]="{ class: 'payment-popup-wrapper' }"
+  (onHiding)="onCancel()"
+>
+  <div *dxTemplate="let data of 'content'" class="payment-popup">
+    <div class="payment-popup__group">
+      <label class="payment-popup__label" for="payment-client">Cliente</label>
+      <dx-text-box
+        id="payment-client"
+        class="payment-popup__input payment-popup__input--readonly"
+        stylingMode="outlined"
+        [value]="formData.clientName"
+        [readOnly]="true"
+      ></dx-text-box>
+    </div>
+
+    <div class="payment-popup__group">
+      <label class="payment-popup__label" for="payment-membership">Membresía</label>
+      <dx-text-box
+        id="payment-membership"
+        class="payment-popup__input payment-popup__input--readonly"
+        stylingMode="outlined"
+        [value]="formData.membershipTypeName"
+        [readOnly]="true"
+      ></dx-text-box>
+    </div>
+
+    <div class="payment-popup__group">
+      <label class="payment-popup__label" for="payment-price">Precio a Pagar</label>
+      <div class="payment-popup__price-chip" [class.payment-popup__price-chip--empty]="formData.price === null">
+        <span class="payment-popup__price-symbol">$</span>
+        <span class="payment-popup__price-amount">{{ priceValue }}</span>
+        <span class="payment-popup__price-currency">COP</span>
+      </div>
+    </div>
+
+    <div class="payment-popup__group">
+      <label class="payment-popup__label" for="payment-method"
+        >Método de pago <span class="payment-popup__required">*</span></label
+      >
+      <dx-select-box
+        id="payment-method"
+        class="payment-popup__input"
+        stylingMode="outlined"
+        placeholder="Seleccione una opción..."
+        [items]="paymentMethods"
+        displayExpr="name"
+        valueExpr="id"
+        [(value)]="formData.paymentMethodId"
+      ></dx-select-box>
+    </div>
+
+    <div class="payment-popup__group">
+      <label class="payment-popup__label" for="payment-reference">Referencia (Opcional)</label>
+      <dx-text-box
+        id="payment-reference"
+        class="payment-popup__input"
+        stylingMode="outlined"
+        placeholder="Ej: #12345, Nequi de Juan"
+        [(value)]="formData.referenceText"
+      ></dx-text-box>
+    </div>
+
+    <div class="popup-actions">
+      <button type="button" class="popup-actions__button popup-actions__button--cancel" (click)="onCancel()">
+        Cancelar
+      </button>
+      <button
+        type="button"
+        class="popup-actions__button popup-actions__button--confirm"
+        [disabled]="!formData.paymentMethodId"
+        (click)="onPay()"
+      >
+        Confirmar Pago
+      </button>
+    </div>
+  </div>
+</dx-popup>
+<dx-load-panel [visible]="loading"></dx-load-panel>

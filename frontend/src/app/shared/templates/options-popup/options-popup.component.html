@@ -1,0 +1,10 @@
+<dx-popover [target]="target" [visible]="visible" [showTitle]="false" [width]="width" (onHiding)="close.emit()">
+  <div *dxTemplate="let d of 'content'">
+    <dx-list [items]="items" (onItemClick)="select.emit($event.itemData.action)">
+      <div *dxTemplate="let item of 'item'" class="option-item">
+        <i *ngIf="item.icon" class="dx-icon dx-icon-{{item.icon}}"></i>
+        <span>{{ item.text }}</span>
+      </div>
+    </dx-list>
+  </div>
+</dx-popover>

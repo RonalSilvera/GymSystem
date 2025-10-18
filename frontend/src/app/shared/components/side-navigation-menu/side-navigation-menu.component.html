@@ -1,0 +1,35 @@
+<div class="sidebar-wrapper">
+  <div class="menu-container">
+
+    <!-- 🖼️ Logo
+    <a [routerLink]="'/'" class="brand-link">
+      <img src="assets/dist/img/logo-aluna.png" class="logo-img" alt="Logo AlunaTek" />
+    </a> -->
+
+    <!-- 🔍 Buscador -->
+    <div class="search-wrapper">
+      <div class="search-container">
+        <div class="search-box dx-treeview-item dx-treeview-item-content">
+          <button><i class="dx-icon dx-icon-search"></i></button>
+          <input type="text" placeholder="Buscar sección..." (input)="onSearchChange($event)" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 📋 Menú -->
+    <dx-tree-view
+      [items]="filteredItems"
+      keyExpr="path"
+      [focusStateEnabled]="false"
+      expandEvent="click"
+      (onItemClick)="onItemClick($event)"
+      width="100%">
+      <ng-template dxTemplate="item" let-item>
+        <a class="menu-link" [routerLink]="item.path" routerLinkActive="active-route" (click)="expandIfCompact()">
+          <i class="dx-icon dx-icon-{{item.icon}}"></i>
+          <span>{{ item.text }}</span>
+        </a>
+      </ng-template>
+    </dx-tree-view>
+  </div>
+</div>

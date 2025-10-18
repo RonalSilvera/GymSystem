@@ -1,0 +1,87 @@
+<div class="dashboard-container">
+  <div class="cards-grid">
+    <div class="dx-card stat-card total">
+      <div class="icon-circle total">
+        <i class="dx-icon dx-icon-group"></i>
+      </div>
+      <div class="stat-info">
+        <span class="stat-title">Miembros Totales</span>
+        <span class="stat-value">{{ summary.totalClients | number: '1.0-0' }}</span>
+      </div>
+    </div>
+
+    <div class="dx-card stat-card active">
+      <div class="icon-circle active">
+        <i class="dx-icon dx-icon-user"></i>
+      </div>
+      <div class="stat-info">
+        <span class="stat-title">Miembros Activos</span>
+        <span class="stat-value">{{ summary.activeClients | number: '1.0-0' }}</span>
+      </div>
+    </div>
+
+    <div class="dx-card stat-card expiring">
+      <div class="icon-circle expiring">
+        <i class="dx-icon dx-icon-clock"></i>
+      </div>
+      <div class="stat-info">
+        <span class="stat-title">Membresías por Vencer</span>
+        <span class="stat-value">{{ summary.expiringMemberships | number: '1.0-0' }}</span>
+      </div>
+    </div>
+
+    <div class="dx-card stat-card today">
+      <div class="icon-circle today">
+        <i class="dx-icon dx-icon-event"></i>
+      </div>
+      <div class="stat-info">
+        <span class="stat-title">Accesos de Hoy</span>
+        <span class="stat-value">{{ summary.todaysAccesses | number: '1.0-0' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="dx-card chart-card">
+      <div class="chart-header">
+        <div>
+          <h3>Crecimiento de Clientes</h3>
+          <span class="chart-subtitle">Últimos 6 meses</span>
+        </div>
+        <span class="series-label">Nuevos clientes</span>
+      </div>
+      <dx-chart
+        class="chart"
+        [dataSource]="monthlySeries"
+        [palette]="'Soft Pastel'"
+        [rtlEnabled]="false"
+        [series]="lineSeries"
+        [tooltip]="lineTooltipOptions"
+      ></dx-chart>
+    </div>
+
+    <div class="dx-card chart-card">
+      <div class="chart-header">
+        <div>
+          <h3>Tipos de Membresía</h3>
+          <span class="chart-subtitle">Ventas de los últimos 6 meses</span>
+        </div>
+      </div>
+      <ng-container *ngIf="pieHasData; else emptyPie">
+        <dx-pie-chart
+          class="chart"
+          [dataSource]="membershipDistribution"
+          palette="Soft Pastel"
+          [legend]="pieLegend"
+          [series]="pieSeries"
+          [tooltip]="pieTooltipOptions"
+        ></dx-pie-chart>
+      </ng-container>
+      <ng-template #emptyPie>
+        <div class="empty-state">Sin datos disponibles</div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<dx-load-panel [visible]="loading"></dx-load-panel>

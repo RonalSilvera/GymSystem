@@ -1,0 +1,29 @@
+<!-- Botón launcher -->
+<dx-button
+  #launcherBtn
+  icon="overflow"
+  stylingMode="text"
+  (onClick)="togglePopup()"
+></dx-button>
+
+<!-- Popup de aplicaciones -->
+<dx-popup
+  *ngIf="popupPosition"
+  [(visible)]="popupVisible"
+  [position]="popupPosition"
+  [shading]="false"
+  [showTitle]="false"
+  [dragEnabled]="false"
+  [hideOnOutsideClick]="true"
+  [width]="300"
+  [height]="'auto'"
+>
+  <div class="app-grid-container">
+    <div class="app-grid">
+      <div class="app-item" *ngFor="let app of apps">
+        <i class="dx-icon dx-icon-{{app.icon}}"></i>
+        <span>{{ app.name }}</span>
+      </div>
+    </div>
+  </div>
+</dx-popup>

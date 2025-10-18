@@ -1,0 +1,39 @@
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  serverIp: '5.78.105.104'
+  sshUser: 'deployuser'
+  deployPassword: '$(deployPassword)'  # Password del usuario
+
+steps:
+# Instalar el SDK de .NET
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.x'
+
+# Autenticar con NuGet
+- task: NuGetAuthenticate@1
+  displayName: 'Authenticate with NuGet'
+
+# Restaurar dependencias
+- script: |
+    dotnet restore
+  displayName: 'Restore NuGet packages'
+
+# Publicar la aplicación
+- script: |
+    dotnet publish -c Release -o $(Build.ArtifactStagingDirectory)/output
+  displayName: 'Publish .NET application'
+
+# Desplegar los artefactos al servidor usando usuario y contraseña
+- task: CmdLine@2
+  inputs:
+    script: |
+      sshpass -p "$DEPLOYPASSWORD" ssh -o StrictHostKeyChecking=no deployuser@$(serverIp) "mkdir -p /var/www/extreaming/api"
+      sshpass -p "$DEPLOYPASSWORD" scp -o StrictHostKeyChecking=no -r $(Build.ArtifactStagingDirectory)/output/* deployuser@$(serverIp):/var/www/extreaming/api/
+  displayName: 'Deploy to Linux server using password'

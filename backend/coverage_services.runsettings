@@ -1,0 +1,19 @@
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <ExcludeByAttribute>GeneratedCodeAttribute</ExcludeByAttribute>
+          <Exclude>
+            <ClassName>.*&lt;.*&gt;.*</ClassName>
+          </Exclude>
+          <Include>
+            <ClassName>BusinessLogic.Adapter.*Service</ClassName>
+            <ClassName>Repository.*Repository</ClassName>
+            <ClassName>API.Controllers.*Controller</ClassName>
+          </Include>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

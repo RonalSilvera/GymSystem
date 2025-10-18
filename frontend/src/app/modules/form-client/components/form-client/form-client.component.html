@@ -1,0 +1,31 @@
+<dx-popup
+  [visible]="visible"
+  [showTitle]="true"
+  [title]="title"
+  [dragEnabled]="false"
+  [width]="600"
+  [height]="400"
+  (onHiding)="cancel.emit()"
+>
+  <div *dxTemplate="let data of 'content'">
+    <dx-form [formData]="formData" [colCount]="2">
+      <dxi-item dataField="fullName" [label]="{ text: 'Nombre' }" [isRequired]="true"></dxi-item>
+      <dxi-item dataField="documentNumber" [label]="{ text: 'Documento' }" [isRequired]="true"></dxi-item>
+      <dxi-item dataField="email" [label]="{ text: 'Email' }" [editorOptions]="{ mode: 'email' }" [validationRules]="[{ type: 'email' }]"></dxi-item>
+      <dxi-item dataField="phone" [label]="{ text: 'Teléfono' }"></dxi-item>
+      <dxi-item dataField="address" [label]="{ text: 'Dirección' }"></dxi-item>
+      <dxi-item dataField="refId" [label]="{ text: 'Ref ID' }" [isRequired]="true"></dxi-item>
+      <dxi-item
+        dataField="membershipTypeId"
+        [label]="{ text: 'Membresía' }"
+        editorType="dxSelectBox"
+        [editorOptions]="{ items: membershipTypes, valueExpr: 'id', displayExpr: 'name', placeholder: 'Seleccione...', onValueChanged: onMembershipChange }"
+      ></dxi-item>
+    </dx-form>
+    <div class="popup-actions">
+      <dx-button text="Guardar" type="default" (onClick)="onSave()"></dx-button>
+      <dx-button text="Cancelar" (onClick)="cancel.emit()"></dx-button>
+      <dx-button text="Limpiar membresía" (onClick)="clearMembership()" *ngIf="formData.membershipTypeId || formData.membershipStatusId"></dx-button>
+    </div>
+  </div>
+</dx-popup>

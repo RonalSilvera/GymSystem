@@ -1,0 +1,10 @@
+<div class="payments">
+  <h2>Pago de membresía</h2>
+  <div *ngIf="client; else noClient">
+    <p>Cliente: {{ client.fullName }} ({{ client.documentNumber }})</p>
+    <dx-button text="Pagar ahora" type="success" (onClick)="pay()"></dx-button>
+  </div>
+  <ng-template #noClient>
+    <p>No se encontró el cliente.</p>
+  </ng-template>
+</div>

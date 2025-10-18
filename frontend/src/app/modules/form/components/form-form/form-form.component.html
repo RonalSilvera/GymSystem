@@ -1,0 +1,11 @@
+<form (ngSubmit)="submit($event)" *ngIf="crud">
+  <dx-form [formData]="crud.form" [readOnly]="modoView">
+    <dxi-item dataField="formType" caption="Tipo de Formulario" editorType="dxSelectBox"
+      [editorOptions]="{ items: formTypes, displayExpr: 'text', valueExpr: 'value' }"></dxi-item>
+    <dxi-item dataField="name" caption="Nombre"></dxi-item>
+    <dxi-item dataField="contactEmail" caption="Email"></dxi-item>
+    <dxi-item dataField="contactPhone" caption="Teléfono"></dxi-item>
+    <dxi-item dataField="address" caption="Dirección"></dxi-item>
+    <dxi-item itemType="button" [buttonOptions]="buttonOptionsSave"></dxi-item>
+  </dx-form>
+</form>

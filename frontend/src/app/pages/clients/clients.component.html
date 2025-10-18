@@ -1,0 +1,118 @@
+<div class="header">
+  <h2>Gestión de Clientes</h2>
+
+
+<dx-data-grid
+  [dataSource]="dataSource"
+  class="content-block"
+  [showBorders]="false"
+  [focusedRowEnabled]="true"
+  [focusedRowIndex]="0"
+  [columnAutoWidth]="true"
+  [columnHidingEnabled]="true"
+  [keyExpr]="'clientId'"
+>
+  <dxo-toolbar>
+    <dxi-item location="before">
+      <dx-button
+        text="Nuevo Cliente"
+        icon="fa fa-plus custom-icon"
+        (onClick)="openForm()"
+        class="btn"
+      ></dx-button>
+    </dxi-item>
+    <dxi-item location="before">
+      <dx-select-box
+        class="box status-filter"
+        [width]="200"
+        [dataSource]="statusOptions"
+        displayExpr="text"
+        valueExpr="value"
+        [(value)]="selectedStatus"
+        (onValueChanged)="onStatusChange()"
+        placeholder="Todos los estados"
+      ></dx-select-box>
+    </dxi-item>
+  </dxo-toolbar>
+
+  <dxo-data-grid-paging [pageSize]="10"></dxo-data-grid-paging>
+  <dxo-data-grid-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-data-grid-pager>
+  <dxo-data-grid-filter-row [visible]="true"></dxo-data-grid-filter-row>
+
+  <dxi-column dataField="fullName" caption="Nombre"></dxi-column>
+  <dxi-column dataField="documentNumber" caption="Documento"></dxi-column>
+  <dxi-column dataField="email" caption="Email"></dxi-column>
+  <dxi-column dataField="phone" caption="Teléfono"></dxi-column>
+  <dxi-column dataField="refId" caption="Ref ID"></dxi-column>
+  <dxi-column caption="Estado" [calculateCellValue]="statusLabel"></dxi-column>
+  <dxi-column caption="Membresía asignada" [calculateCellValue]="membershipTypeLabel"></dxi-column>
+  <dxi-column caption="Estado de la membresía" [calculateCellValue]="membershipStatusLabel"></dxi-column>
+  <dxi-column dataField="amountDue" caption="Por pagar" dataType="number" format="$ #,##0"></dxi-column>
+  <dxi-column caption="Acciones" cellTemplate="actionsCellTemplate" alignment="center" [width]="200">
+    <div *dxTemplate="let data of 'actionsCellTemplate'" class="table-content-icons">
+      <dx-button icon="edit" class="edit-button" type="default" stylingMode="outlined" (onClick)="openForm(data.data)"></dx-button>
+      <dx-button *ngIf="data.data.statusId === 1" icon="clear" class="delete-button" type="danger" stylingMode="outlined" (onClick)="confirmStatusChange(data.data, 'disable')"></dx-button>
+      <dx-button *ngIf="data.data.statusId !== 1" icon="refresh" class="view-button" type="default" stylingMode="outlined" (onClick)="confirmStatusChange(data.data, 'enable')"></dx-button>
+      <dx-button icon="chevronright" class="more-button" type="default" stylingMode="outlined" (onClick)="openOptions($event, data.data)"></dx-button>
+    </div>
+  </dxi-column>
+</dx-data-grid>
+
+<app-form-client
+  [visible]="popupVisible"
+  [title]="popupTitle"
+  [formData]="formData"
+  (saveForm)="onSave($event)"
+  (cancel)="popupVisible=false"
+></app-form-client>
+
+<dx-load-panel [visible]="loading"></dx-load-panel>
+
+<app-error-popup
+  [visible]="errorPopupVisible"
+  [title]="errorTitle"
+  [message]="errorMessage"
+  (close)="errorPopupVisible = false"
+></app-error-popup>
+
+<app-success-popup
+  [visible]="successPopupVisible"
+  [title]="successTitle"
+  [message]="successMessage"
+  (close)="successPopupVisible = false"
+></app-success-popup>
+
+<app-confirm-popup
+  [visible]="confirmPopupVisible"
+  [title]="confirmTitle"
+  [message]="confirmMessage"
+  [confirmButtonText]="confirmButtonText"
+  [cancelButtonText]="cancelButtonText"
+  (confirm)="onConfirmAction()"
+  (cancel)="onCancelAction()"
+></app-confirm-popup>
+
+<app-options-popup
+  [target]="optionsTarget"
+  [visible]="optionsPopupVisible"
+  [items]="extraOptions"
+  (close)="optionsPopupVisible=false"
+  (select)="onOptionSelect($event)">
+</app-options-popup>
+
+<app-payment-popup
+  [visible]="paymentPopupVisible"
+  [client]="paymentClient"
+  (close)="paymentPopupVisible = false; paymentClient = null"
+  (success)="onPaymentSuccess()"
+  (error)="onPaymentError()"
+></app-payment-popup>
+
+<app-partial-payment-popup
+  [visible]="partialPaymentPopupVisible"
+  [client]="partialPaymentClient"
+  (close)="partialPaymentPopupVisible = false; partialPaymentClient = null"
+  (success)="onPartialPaymentSuccess()"
+  (error)="onPartialPaymentError()"
+></app-partial-payment-popup>
+

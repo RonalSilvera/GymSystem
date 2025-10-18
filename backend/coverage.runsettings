@@ -1,0 +1,16 @@
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <ExcludeByAttribute>GeneratedCodeAttribute</ExcludeByAttribute>
+          <Include>
+            <ModulePath>.*01.Logic.*</ModulePath>
+            <ModulePath>.*02.Service.*</ModulePath>
+            <ModulePath>.*00.Persistence.*</ModulePath>
+          </Include>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

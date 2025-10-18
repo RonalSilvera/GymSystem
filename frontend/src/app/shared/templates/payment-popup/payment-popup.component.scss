@@ -1,0 +1,157 @@
+:host {
+  display: block;
+}
+
+.payment-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #f6f7fb;
+  padding: 24px;
+}
+
+.payment-popup__group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment-popup__group + .payment-popup__group {
+  margin-top: 16px;
+}
+
+.payment-popup__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.payment-popup__required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+:host ::ng-deep .payment-popup-wrapper .dx-overlay-content {
+  border-radius: 18px;
+  box-shadow: 0px 20px 45px rgba(15, 23, 42, 0.18);
+}
+
+:host ::ng-deep .payment-popup-wrapper .dx-popup-title {
+  font-weight: 700;
+  font-size: 18px;
+  color: #0f172a;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+:host ::ng-deep .payment-popup-wrapper .dx-popup-title .dx-closebutton {
+  color: #64748b;
+}
+
+:host ::ng-deep .payment-popup-wrapper .dx-popup-content {
+  padding: 0;
+  background-color: transparent;
+}
+
+:host ::ng-deep .payment-popup-wrapper .dx-texteditor {
+  border-radius: 12px;
+  border: 1px solid #d6dae6;
+  background-color: #ffffff;
+  min-height: 44px;
+}
+
+:host ::ng-deep .payment-popup-wrapper .dx-texteditor.dx-state-readonly {
+  background-color: #eff3ff;
+  border-color: #cbd5f5;
+}
+
+:host ::ng-deep .payment-popup-wrapper .dx-texteditor-input {
+  font-size: 14px;
+  color: #1e293b;
+  padding: 10px 14px;
+}
+
+:host ::ng-deep .payment-popup-wrapper .dx-placeholder {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.payment-popup__price-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 12px;
+  border: 1px solid #bbf7d0;
+  background-color: #ecfdf5;
+  padding: 12px 16px;
+  font-weight: 700;
+  color: #047857;
+  min-height: 44px;
+}
+
+.payment-popup__price-chip--empty {
+  opacity: 0.6;
+}
+
+.payment-popup__price-symbol {
+  font-size: 16px;
+}
+
+.payment-popup__price-amount {
+  font-size: 16px;
+}
+
+.payment-popup__price-currency {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
+  background-color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.popup-actions__button {
+  border-radius: 24px;
+  border: none;
+  font-weight: 600;
+  padding: 12px 24px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.popup-actions__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.popup-actions__button:focus {
+  outline: none;
+}
+
+.popup-actions__button--cancel {
+  background-color: transparent;
+  color: #2f66f5;
+}
+
+.popup-actions__button--confirm {
+  background-color: #2f66f5;
+  color: #ffffff;
+  box-shadow: 0px 10px 24px rgba(47, 102, 245, 0.35);
+}
+
+.popup-actions__button--confirm:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 16px 32px rgba(47, 102, 245, 0.4);
+}
+
+.popup-actions__button--cancel:hover {
+  text-decoration: underline;
+}

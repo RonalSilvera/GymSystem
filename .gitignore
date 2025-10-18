@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/redDivinaAI/FileContentIndex/4aad925f-5d60-4e9d-bb2a-6377bf046fd7.vsidx
+/.vs/redDivinaAI/v17/.wsuo
+/.vs/redDivinaAI/v17/DocumentLayout.backup.json
+/.vs/redDivinaAI/v17/DocumentLayout.json
+/.vs/slnx.sqlite
+/.vs/slnx.sqlite-journal
+/.vs/VSWorkspaceState.json

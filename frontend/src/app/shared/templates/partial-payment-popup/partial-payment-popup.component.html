@@ -1,0 +1,131 @@
+<dx-popup
+  [visible]="visible"
+  [showTitle]="true"
+  title="Registrar Pago Parcial"
+  [dragEnabled]="false"
+  [width]="'100%'"
+  [maxWidth]="940"
+  [minWidth]="320"
+  [height]="'auto'"
+  [maxHeight]="820"
+  (onHiding)="onCancel()"
+>
+  <div *dxTemplate="let data of 'content'" class="partial-payment-popup">
+    <div class="panels-grid">
+      <section class="panel panel-client">
+        <header class="panel-header">
+          <h3 class="panel-title">Información del Cliente</h3>
+          <span *ngIf="formData.membershipTypeName" class="membership-chip">
+            {{ formData.membershipTypeName }}
+          </span>
+        </header>
+        <div class="panel-body info-grid">
+          <div class="info-item">
+            <span class="info-label">Cliente</span>
+            <span class="info-value">{{ formData.clientName || '-' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Membresía</span>
+            <span class="info-value">{{ formData.membershipTypeName || '-' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Precio de lista</span>
+            <span class="info-value">{{ formatCurrency(formData.membershipPrice) }}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel-summary">
+        <header class="panel-header">
+          <h3 class="panel-title">Resumen de Pagos</h3>
+        </header>
+        <div class="panel-body summary-grid">
+          <div class="metric">
+            <span class="metric-label">Último pago</span>
+            <span class="metric-value">{{ formatCurrency(formData.lastPaymentAmount) }}</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Total pagado</span>
+            <span class="metric-value">{{ formatCurrency(formData.amountPaid) }}</span>
+          </div>
+          <div class="metric metric-danger">
+            <span class="metric-label">Saldo por pagar</span>
+            <span class="metric-value">{{ formatCurrency(formData.amountDue) }}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel-register">
+        <header class="panel-header">
+          <h3 class="panel-title">Registrar Abono</h3>
+          <span class="helper" *ngIf="hasOutstanding">
+            Saldo disponible: <strong>{{ formatCurrency(formData.amountDue ?? formData.membershipPrice) }}</strong>
+          </span>
+        </header>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label">
+              Monto parcial <span class="required">*</span>
+            </label>
+            <dx-number-box
+              stylingMode="outlined"
+              width="100%"
+              [format]="amountEditorOptions.format"
+              [min]="amountEditorOptions.min"
+              [showSpinButtons]="amountEditorOptions.showSpinButtons"
+              [max]="amountEditorOptions.max"
+              [disabled]="amountEditorOptions.disabled"
+              [placeholder]="amountEditorOptions.placeholder"
+              [value]="$any(formData.amount ?? null)"
+              (onValueChanged)="formData.amount = typeof $event.value === 'number' ? $event.value : null"
+            ></dx-number-box>
+          </div>
+          <div class="form-field">
+            <label class="form-label">
+              Método de pago <span class="required">*</span>
+            </label>
+            <dx-select-box
+              stylingMode="outlined"
+              width="100%"
+              [items]="paymentMethods"
+              valueExpr="id"
+              displayExpr="name"
+              placeholder="Seleccione una opción..."
+              [disabled]="!hasOutstanding"
+              [value]="$any(formData.paymentMethodId ?? null)"
+              (onValueChanged)="formData.paymentMethodId = $event.value ?? null"
+            ></dx-select-box>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Referencia (Opcional)</label>
+            <dx-text-box
+              stylingMode="outlined"
+              width="100%"
+              placeholder="Ej: #12345, Nequi de Juan"
+              [value]="$any(formData.referenceText ?? '')"
+              (onValueChanged)="formData.referenceText = $event.value ?? ''"
+            ></dx-text-box>
+          </div>
+        </div>
+
+        <div class="alert alert-warning" *ngIf="!hasOutstanding">
+          <div class="alert-title">Aviso</div>
+          <p>Este cliente no tiene saldo pendiente por esta membresía.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="popup-actions">
+      <dx-button text="Cancelar" stylingMode="text" (onClick)="onCancel()"></dx-button>
+      <dx-button
+        text="Registrar Abono"
+        type="default"
+        stylingMode="contained"
+        (onClick)="onPay()"
+        [disabled]="!canSubmit"
+      ></dx-button>
+    </div>
+  </div>
+</dx-popup>
+<dx-load-panel [visible]="loading"></dx-load-panel>

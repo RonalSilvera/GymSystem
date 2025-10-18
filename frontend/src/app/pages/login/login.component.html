@@ -1,0 +1,52 @@
+<div class="login-page">
+  <div class="login-main-container">
+    <div class="left-panel">
+      <div class="welcome-content">
+        <div class="logo-container">
+        </div>
+        <img src="./assets/dist/img/logo-aluna.png" class="login-logo" alt="Logo" />
+        <h1 class="welcome-title">¡BIENVENIDOS A <br>GymSystem!</h1>
+        <p class="welcome-subtitle">
+          Gestiona tus usuarios, membresías y cobros <br>
+          desde una sola plataforma para tu gimnasio
+        </p>
+        <i class="fas fa-dumbbell gym-icon"></i>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="login-container">
+        <h2 class="login-title">Log In</h2>
+        <div class="login-form">
+          <form (submit)="submit($event)">
+            <dx-form [formData]="credentials">
+              <dxi-item dataField="email" [label]="{ text: 'Correo' }">
+                <dxi-validation-rule type="required"></dxi-validation-rule>
+              </dxi-item>
+              <dxi-item dataField="password" editorType="dxTextBox" [editorOptions]="{mode:'password'}" [label]="{text:'Contraseña'}">
+                <dxi-validation-rule type="required"></dxi-validation-rule>
+              </dxi-item>
+              <dxi-item itemType="button" [buttonOptions]="buttonOptions"></dxi-item>
+            </dx-form>
+            <div class="separator">
+              <span>Síguenos</span>
+            </div>
+            <div class="social-buttons">
+              <button type="button" class="social-btn instagram">
+                <i class="fab fa-instagram"></i>
+              </button>
+              <button type="button" class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i>
+              </button>
+              <button type="button" class="social-btn twitter">
+                <i class="fa-brands fa-x-twitter"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-error-popup [visible]="isPopupVisible" [title]="errorTitle" [message]="errorMessage" (close)="closeErrorModal()"></app-error-popup>

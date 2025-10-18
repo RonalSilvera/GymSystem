@@ -1,0 +1,29 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="col-lg-3 mb-3">
+          <dx-button type="success" text="Nuevo Rol" icon="fa fa-plus" (onClick)="btnCrearRole()"></dx-button>
+        </div>
+        <div class="card">
+          <dx-data-grid [dataSource]="roles" [showBorders]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [showColumnLines]="true" [showRowLines]="true">
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+            <dxi-column dataField="name" caption="Nombre"></dxi-column>
+            <dxi-column dataField="description" caption="Descripción"></dxi-column>
+            <dxi-column caption="Acciones" cellTemplate="actionTemplate" alignment="center" [width]="200">
+              <div *dxTemplate="let data of 'actionTemplate'" class="table-content-icons">
+                <dx-button icon="fas fa-eye" stylingMode="outlined" (onClick)="actionRole(data.data, 'VIEW')" hint="Visualizar"></dx-button>
+                <dx-button icon="fas fa-edit" stylingMode="outlined" (onClick)="actionRole(data.data, 'EDIT')" hint="Editar"></dx-button>
+                <dx-button icon="fas fa-trash" stylingMode="outlined" (onClick)="actionRole(data.data, 'DELETE')" hint="Eliminar"></dx-button>
+              </div>
+            </dxi-column>
+          </dx-data-grid>
+          <dx-popup [width]="'500'" [height]="'60%'" [showTitle]="true" [title]="titulo" [dragEnabled]="true" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
+            <app-form-role (crudEvent)="crudRole($event)" [crud]="crud"></app-form-role>
+          </dx-popup>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
